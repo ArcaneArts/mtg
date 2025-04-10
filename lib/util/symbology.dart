@@ -549,11 +549,8 @@ class MTGSymbol {
   static RegExp get regex => RegExp(r'{[½∞\w\/]+}');
 
   /// Returns a visual representation of the [MTGSymbol] as an [SvgPicture].
-  SvgPicture toSvg({double height = 16.0}) => SvgPicture.asset(
-    image,
-    height: height,
-    semanticsLabel: english,
-  );
+  SvgPicture toSvg({double height = 16.0}) =>
+      SvgPicture.asset(image, height: height, semanticsLabel: english);
 
   /// Allows two instances of [MTGSymbol] to be considered equal if the relevant
   /// properties are equal.

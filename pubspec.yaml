@@ -1,16 +1,16 @@
 name: mtg
 description: "A Magic: The Gathering, Scryfa;;, and Utility package for making, and using, MTG apps."
-version: 1.0.1
+version: 1.0.2
 repository: https://github.com/ArcaneArts/mtg
 environment:
   sdk: ^3.7.0
   flutter: ">=1.17.0"
 dependencies:
   # this is for the SVG's to be loaded
-  flutter_svg: ^2.0.17
-  scryfall_api: ^2.2.0
-  fast_log: ^1.0.7
-  cached_network_image: ^3.4.1
+  flutter_svg: <=2.0.17
+  scryfall_api: <=2.2.0
+  fast_log: <=1.0.7
+  cached_network_image: <=3.4.1
 
   flutter:
     sdk: flutter

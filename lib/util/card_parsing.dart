@@ -11,9 +11,9 @@ import 'package:mtg/util/symbology.dart';
 ///
 /// Returns `null` if the input string is `null` or doesn't contain any valid MTG symbols.
 List<Widget>? parseManaCostString(
-    String? manaCost, {
-      EdgeInsets? padding = const EdgeInsets.symmetric(horizontal: 1.5),
-    }) {
+  String? manaCost, {
+  EdgeInsets? padding = const EdgeInsets.symmetric(horizontal: 1.5),
+}) {
   if (manaCost == null) {
     return null;
   }
@@ -42,11 +42,11 @@ List<Widget>? parseManaCostString(
   return manaCostSymbols;
 }
 
-/// Parses an OracleText  string and returns a TextSpan with embedded mana symbols.
+/// Parses an OracleText string and returns a TextSpan with embedded mana symbols and other MTG symbols.
 ///
 /// Example:
 /// ```dart
-/// TextSpan? span = parseOracleTextString('Add {W} or {U} to your mana pool');
+/// TextSpan? span = parseOracleTextString('Add {W} or {U}, then {T} to untap.');
 /// ```
 ///
 /// Returns `null` if the input string is `null`.
@@ -73,9 +73,42 @@ TextSpan? parseOracleTextString(String? oracleText) {
         'Unexpected MTG symbol',
       );
     }
-    children.add(WidgetSpan(child: mtgSymbol.toSvg()));
+    children.add(
+      WidgetSpan(child: mtgSymbol.toSvg(height: 14.0)),
+    ); // Smaller for inline text
     lastIndex = match.end;
   }
   children.add(TextSpan(text: oracleText.substring(lastIndex)));
   return TextSpan(children: children);
+}
+
+/// Parses a power/toughness string (e.g., "2/3", "*/4") and returns a TextSpan.
+///
+/// Returns `null` if the input is `null` or invalid.
+TextSpan? parsePowerToughness(String? powerToughness) {
+  if (powerToughness == null) return null;
+
+  final RegExp ptRegex = RegExp(r'([*\d]+|\*)/([*\d]+|\*)');
+  RegExpMatch? match = ptRegex.firstMatch(powerToughness);
+  if (match == null)
+    return TextSpan(text: powerToughness); // Fallback to plain text
+
+  String? power = match.group(1);
+  String? toughness = match.group(2);
+  return TextSpan(
+    text: '$power / $toughness',
+    style: const TextStyle(fontWeight: FontWeight.bold),
+  );
+}
+
+/// Parses a loyalty value (e.g., "3", "X") and returns a TextSpan.
+///
+/// Returns `null` if the input is `null`.
+TextSpan? parseLoyalty(String? loyalty) {
+  if (loyalty == null) return null;
+
+  return TextSpan(
+    text: loyalty,
+    style: const TextStyle(fontWeight: FontWeight.bold),
+  );
 }

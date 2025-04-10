@@ -1,3 +1,10 @@
+# 1.0.2
+
+* Added two new parsing functions:
+  * `parsePowerToughness`: Parses power/toughness strings (like `2/3` or `*/4`) and returns formatted TextSpan
+  * `parseLoyalty`: Parses planeswalker loyalty values and returns formatted TextSpan
+* Updated package constraints
+
 # 1.0.1
 
 * Added two new parsing functions:

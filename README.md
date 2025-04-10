@@ -12,6 +12,8 @@ This package provides tools for rendering Magic: The Gathering cards, mana symbo
 
 - 🃏 Parse and display MTG mana costs as Flutter widgets
 - 📝 Parse Oracle text with embedded mana symbols 
+- 💪 Parse power/toughness values for creatures
+- ⚔️ Parse loyalty values for planeswalkers
 - 🎨 High-quality SVG rendering of all mana symbols
 - 🧩 Modular design for easy integration
 
@@ -21,7 +23,7 @@ Add the dependency to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  mtg: ^1.0.1
+  mtg: ^1.0.2
 ```
 
 Run the following command:
@@ -69,6 +71,28 @@ TextSpan? textSpan = parseOracleTextString('Add {W} or {U} to your mana pool.');
 RichText(
   text: parseOracleTextString('Tap: Add {R}. Activate only if you control a Mountain.') 
       ?? const TextSpan(text: ''),
+)
+```
+
+### Parsing Power/Toughness and Loyalty
+
+Use the dedicated functions to parse power/toughness and loyalty values:
+
+```dart
+import 'package:mtg/mtg.dart';
+import 'package:flutter/material.dart';
+
+// Parse power/toughness for creatures
+TextSpan? ptSpan = parsePowerToughness('2/3');
+TextSpan? variablePt = parsePowerToughness('*/4');
+
+// Parse loyalty for planeswalkers
+TextSpan? loyaltySpan = parseLoyalty('3');
+TextSpan? variableLoyalty = parseLoyalty('X');
+
+// Use in RichText widgets
+RichText(
+  text: parsePowerToughness('2/3') ?? const TextSpan(text: ''),
 )
 ```
 

@@ -1,15 +1,12 @@
 import 'dart:async';
 
-import 'package:fast_log/fast_log.dart';
 import 'package:scryfall_api/scryfall_api.dart';
-import 'package:serviced/serviced.dart';
-
 
 final ScryfallApiClient _apiClient = ScryfallApiClient();
 final Map<String, MtgCard> _scryfallCardCache = {};
 
 class ScryUtil {
-  // Thsi makes it 'snappy' ~dan
+  // This makes it 'snappy' ~dan
   ScryUtil._();
 
   static Future<MtgCard> getCardDetails(String cardId) async {
