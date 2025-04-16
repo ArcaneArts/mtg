@@ -90,8 +90,9 @@ TextSpan? parsePowerToughness(String? powerToughness) {
 
   final RegExp ptRegex = RegExp(r'([*\d]+|\*)/([*\d]+|\*)');
   RegExpMatch? match = ptRegex.firstMatch(powerToughness);
-  if (match == null)
+  if (match == null) {
     return TextSpan(text: powerToughness); // Fallback to plain text
+  }
 
   String? power = match.group(1);
   String? toughness = match.group(2);
