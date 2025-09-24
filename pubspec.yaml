@@ -1,6 +1,6 @@
 name: mtg
 description: "A Magic: The Gathering, Scryfall, and Utility package for making, and using, MTG apps."
-version: 1.0.3
+version: 1.0.3+1
 repository: https://github.com/ArcaneArts/mtg
 environment:
   sdk: ^3.7.0
@@ -13,19 +13,19 @@ environment:
 
 dependencies:
   flutter_svg: any
-  scryfall_api: <=3.0.0
-  fast_log: <=2.0.0
-  cached_network_image: <=4.0.0
+  scryfall_api: any
+  fast_log: any
+  cached_network_image: ^3.4.1
 
   flutter:
     sdk: flutter
-  serviced: <=1.0.5
-  magic_card: <=2.0.01
-  nonsense_foil: <=2.0.0
+  serviced: ^1.0.3
+  magic_card: ^1.3.0
+  nonsense_foil: ^0.9.0+2
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^5.0.0
+  flutter_lints: ^6.0.0
 
 
 flutter:
